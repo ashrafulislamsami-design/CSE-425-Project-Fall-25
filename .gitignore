@@ -1,0 +1,11 @@
+# Ignore Data Files (Too large for GitHub)
+data/
+numba_cache/
+__pycache__/
+*.pyc
+.DS_Store
+
+# Ignore virtual environments if you used one
+.venv/
+venv/
+env/

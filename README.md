@@ -13,7 +13,7 @@ This project implements an unsupervised learning pipeline to cluster music track
 The metadata and cleaned lyric features are included in this repository (`data/processed/`).
 **The raw audio files are hosted externally due to size limits.**
 
-* **Download Link:** [INSERT YOUR GOOGLE DRIVE LINK HERE]
+* **Download Link:** [https://drive.google.com/file/d/1UHPHUGJMzt6169MK6TUahAaX8CRPfhu3/view?usp=sharing]
 * **Instructions:**
     1.  Download `processed_audio.zip` from the link above.
     2.  Extract the `.wav` files into the `data/raw/` folder of this repository.

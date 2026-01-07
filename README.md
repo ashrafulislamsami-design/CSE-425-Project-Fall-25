@@ -1,52 +1,43 @@
-# Unsupervised Clustering of Musical Audio using Linear VAE
+# Unsupervised Music Clustering 
 
-**Author:** Md. Ashraful Islam Sami  
-**Course:** CSE 425: Neural Networks  
-**Project Type:** Unsupervised Learning (Easy Task)
+**Course:** CSE 425: Neural Networks
+**Project:** Unsupervised Learning Pipeline for Hybrid Music Clustering using Beta-CVAE
 
 ##  Project Overview
-This project implements a **Linear Variational Autoencoder (VAE)** to extract latent features from raw audio data (GTZAN dataset). It clusters these features using **K-Means** and demonstrates that VAE-learned features significantly outperform standard PCA dimensionality reduction.
+This project implements an unsupervised learning pipeline to cluster music tracks from a hybrid dataset (English and Bangla). We address the challenge of high-dimensional, multi-modal data (Audio + Lyrics + Genre) by progressing through three architectural stages:
+1.  **Easy Task:** Baseline PCA + K-Means.
+2.  **Medium Task:** Convolutional VAE (CVAE) with hybrid features.
+3.  **Hard Task:** Conditional Beta-VAE ($\beta$-CVAE) for disentangled representation learning.
 
-## Key Results
+##  Dataset Access
+The metadata and cleaned lyric features are included in this repository (`data/processed/`).
+**The raw audio files are hosted externally due to size limits.**
 
-| Metric | VAE (Our Method) | PCA (Baseline) | Improvement |
-| :--- | :--- | :--- | :--- |
-| **Silhouette Score** | **0.4811** | 0.3015 | +59% |
-| **Calinski-Harabasz** | **8788.7** | 2200.9 | **+299%** |
+* **Download Link:** [INSERT YOUR GOOGLE DRIVE LINK HERE]
+* **Instructions:**
+    1.  Download `processed_audio.zip` from the link above.
+    2.  Extract the `.wav` files into the `data/raw/` folder of this repository.
+
+##  Results
+Our experiments demonstrate that the Hard Task (Beta-CVAE) significantly outperforms standard clustering in terms of semantic accuracy (NMI) and Cluster Purity.
+
+| Task Level | Model Architecture | Features Used | NMI Score | Cluster Purity | Key Finding |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Easy** | PCA + K-Means | Audio (Flat) | N/A | N/A | Baseline establishes linear limit. |
+| **Medium** | ConvVAE | Audio + Lyrics | 0.0471 | 0.1842 | Scores dropped due to high-dimensional sparsity. |
+| **Hard** | **Beta-CVAE ($\beta=4$)** | **Audio+Lyrics+Genre** | **0.0794** | **0.2731** | **Best Result.** Model successfully disentangled genres. |
+
+##  Installation & Usage
+1.  **Clone the repository**
+2.  **Install dependencies:**
+    ```bash
+    pip install -r requirements.txt
+    ```
+3.  **Run the analysis:**
+    Open `notebooks/main_analysis.ipynb` to view the training pipeline and results.
 
 ##  Repository Structure
-```text
-project/
-├── data/               # Raw audio (Not included in repo due to size)
-├── src/
-│   ├── dataset.py      # MFCC Feature Extraction & Normalization
-│   ├── vae.py          # PyTorch Linear VAE Model
-│   ├── train.py        # Training Loop
-│   ├── clustering.py   # t-SNE Visualization & Metrics
-│   └── preprocess.py   # Data preprocessing script
-├── results/            # Generated Plots & Saved Models
-└── requirements.txt    # Python dependencies
-
-How to Run
-1. Install Dependencies
-Bash
-
-pip install -r requirements.txt
-2. Prepare Data
-Place your .wav files in data/processed_audio/ and run the pre-processor (this calculates MFCCs and saves them as tensors):
-
-Bash
-
-python src/preprocess.py
-3. Train the VAE
-Trains the model for 20 epochs and saves vae_model.pth in the results folder.
-
-Bash
-
-python src/train.py
-4. Analyze & Visualize
-Runs K-Means clustering, calculates Silhouette/CH scores, and generates the t-SNE comparison plot.
-
-Bash
-
-python src/clustering.py
+* `data/`: Processed metadata CSV.
+* `notebooks/`: Jupyter Notebook with full training loops and verification.
+* `results/`: t-SNE plots and Spectrogram reconstructions.
+* `src/`: Modular Python scripts for model architectures and preprocessing.

@@ -1,11 +1,12 @@
-# Ignore Data Files (Too large for GitHub)
-data/
-numba_cache/
-__pycache__/
-*.pyc
-.DS_Store
+# Block huge data
+data/fma_small/
+data/fma_metadata/
+data/raw/
+*.zip
+*.wav
+*.mp3
+*.pt
 
-# Ignore virtual environments if you used one
-.venv/
-venv/
-env/
+# Block system files
+__pycache__/
+.ipynb_checkpoints/

@@ -1,7 +1,7 @@
 # Unsupervised Music Clustering 
 
 **Course:** CSE 425: Neural Networks
-**Project:** Unsupervised Learning Pipeline for Hybrid Music Clustering using Beta-CVAE
+**Project:** Unsupervised Learning Pipeline for Music Clustering using Beta-CVAE
 
 ##  Project Overview
 This project implements an unsupervised learning pipeline to cluster music tracks from a hybrid dataset (English and Bangla). We address the challenge of high-dimensional, multi-modal data (Audio + Lyrics + Genre) by progressing through three architectural stages:

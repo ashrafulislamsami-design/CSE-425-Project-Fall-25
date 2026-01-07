@@ -19,13 +19,15 @@ The metadata and cleaned lyric features are included in this repository (`data/p
     2.  Extract the `.wav` files into the `data/raw/` folder of this repository.
 
 ##  Results
-Our experiments demonstrate that the Hard Task (Beta-CVAE) significantly outperforms standard clustering in terms of semantic accuracy (NMI) and Cluster Purity.
+Our experiments demonstrate that the Hard Task (Beta-CVAE) provides the most interpretable clusters, achieving high Purity scores.
 
-| Task Level | Model Architecture | Features Used | NMI Score | Cluster Purity | Key Finding |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| **Easy** | PCA + K-Means | Audio (Flat) | N/A | N/A | Baseline establishes linear limit. |
-| **Medium** | ConvVAE | Audio + Lyrics | 0.0471 | 0.1842 | Scores dropped due to high-dimensional sparsity. |
-| **Hard** | **Beta-CVAE ($\beta=4$)** | **Audio+Lyrics+Genre** | **0.0794** | **0.2731** | **Best Result.** Model successfully disentangled genres. |
+| Task Level | Model Architecture | Metric Type | Score | Key Finding |
+| :--- | :--- | :--- | :--- | :--- |
+| **Easy** | PCA + K-Means | Silhouette | 0.0121 | Baseline establishes linear limit. |
+| **Medium** | ConvVAE | ARI | **0.0471** | High Adjusted Rand Index (ARI), but clusters are noisy (DB Index: 4.45). |
+| **Hard** | **Beta-CVAE ($\beta=4$)** | **Purity** | **0.2731** | **Best Interpretability.** The model successfully disentangled genres, achieving 27.3% cluster purity. |
+
+*Note: The Medium task prioritized ARI/Silhouette metrics, while the Hard task introduced Purity and NMI to measure genre disentanglement specifically.*
 
 ##  Installation & Usage
 1.  **Clone the repository**

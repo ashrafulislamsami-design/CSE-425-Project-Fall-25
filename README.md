@@ -19,15 +19,13 @@ The metadata and cleaned lyric features are included in this repository (`data/p
     2.  Extract the `.wav` files into the `data/raw/` folder of this repository.
 
 ##  Results
-Our experiments demonstrate that the Hard Task (Beta-CVAE) provides the most interpretable clusters, achieving high Purity scores.
+Our experiments show a clear progression in model performance. The Hard Task (Beta-CVAE) achieved the highest interpretability (Cluster Purity) by leveraging genre conditioning.
 
-| Task Level | Model Architecture | Metric Type | Score | Key Finding |
-| :--- | :--- | :--- | :--- | :--- |
-| **Easy** | PCA + K-Means | Silhouette | 0.0121 | Baseline establishes linear limit. |
-| **Medium** | ConvVAE | ARI | **0.0471** | High Adjusted Rand Index (ARI), but clusters are noisy (DB Index: 4.45). |
-| **Hard** | **Beta-CVAE ($\beta=4$)** | **Purity** | **0.2731** | **Best Interpretability.** The model successfully disentangled genres, achieving 27.3% cluster purity. |
-
-*Note: The Medium task prioritized ARI/Silhouette metrics, while the Hard task introduced Purity and NMI to measure genre disentanglement specifically.*
+| Task Level | Model Architecture | Best Metric | Score | Baseline / Comparison | Key Finding |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Easy** | Basic VAE | Silhouette | **0.1145** | PCA Baseline: 0.1033 | VAE slightly outperformed linear PCA in geometric clustering. |
+| **Medium** | ConvVAE | ARI | **0.0471** | Silhouette: 0.0121 | Convolutional features struggled with high-dimensional sparsity (Low Silhouette). |
+| **Hard** | **Beta-CVAE ($\beta=4$)** | **Purity** | **0.2731** | NMI: 0.0794 | **Best Result.** Conditioning on genre successfully disentangled the latent space. |
 
 ##  Installation & Usage
 1.  **Clone the repository**

@@ -1,7 +1,7 @@
 # Unsupervised Music Clustering 
 
 **Course:** CSE 425: Neural Networks
-**Project:** Unsupervised Learning Pipeline for Hybrid Music Clustering using Beta-CVAE
+**Project:** Unsupervised Learning Pipeline for Music Clustering using Beta-CVAE
 
 ##  Project Overview
 This project implements an unsupervised learning pipeline to cluster music tracks from a hybrid dataset (English and Bangla). We address the challenge of high-dimensional, multi-modal data (Audio + Lyrics + Genre) by progressing through three architectural stages:
@@ -13,19 +13,19 @@ This project implements an unsupervised learning pipeline to cluster music track
 The metadata and cleaned lyric features are included in this repository (`data/processed/`).
 **The raw audio files are hosted externally due to size limits.**
 
-* **Download Link:** [INSERT YOUR GOOGLE DRIVE LINK HERE]
+* **Download Link:** [https://drive.google.com/file/d/1UHPHUGJMzt6169MK6TUahAaX8CRPfhu3/view?usp=sharing]
 * **Instructions:**
     1.  Download `processed_audio.zip` from the link above.
     2.  Extract the `.wav` files into the `data/raw/` folder of this repository.
 
 ##  Results
-Our experiments demonstrate that the Hard Task (Beta-CVAE) significantly outperforms standard clustering in terms of semantic accuracy (NMI) and Cluster Purity.
+Our experiments show a clear progression in model performance. The Hard Task (Beta-CVAE) achieved the highest interpretability (Cluster Purity) by leveraging genre conditioning.
 
-| Task Level | Model Architecture | Features Used | NMI Score | Cluster Purity | Key Finding |
+| Task Level | Model Architecture | Best Metric | Score | Baseline / Comparison | Key Finding |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Easy** | PCA + K-Means | Audio (Flat) | N/A | N/A | Baseline establishes linear limit. |
-| **Medium** | ConvVAE | Audio + Lyrics | 0.0471 | 0.1842 | Scores dropped due to high-dimensional sparsity. |
-| **Hard** | **Beta-CVAE ($\beta=4$)** | **Audio+Lyrics+Genre** | **0.0794** | **0.2731** | **Best Result.** Model successfully disentangled genres. |
+| **Easy** | Basic VAE | Silhouette | **0.1145** | PCA Baseline: 0.1033 | VAE slightly outperformed linear PCA in geometric clustering. |
+| **Medium** | ConvVAE | ARI | **0.0471** | Silhouette: 0.0121 | Convolutional features struggled with high-dimensional sparsity (Low Silhouette). |
+| **Hard** | **Beta-CVAE ($\beta=4$)** | **Purity** | **0.2731** | NMI: 0.0794 | **Best Result.** Conditioning on genre successfully disentangled the latent space. |
 
 ##  Installation & Usage
 1.  **Clone the repository**

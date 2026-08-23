@@ -1,0 +1,16 @@
+# Block huge data
+data/fma_small/
+data/fma_metadata/
+data/raw/
+*.zip
+*.wav
+*.mp3
+*.pt
+
+# Block system files
+__pycache__/
+.ipynb_checkpoints/
+# Block Office lock and temp artifacts
+~$*
+~WRL*.tmp
+*.tmp
